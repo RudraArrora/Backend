@@ -3,7 +3,13 @@ const app =express();
 const port = 8000;
 // use express router
 const db = require("./config/moongose");
-app.use(express.urlencoded());
+//////////////////////////
+const passport= require('passport')
+const passportLocal = require("./config/passport");
+/////////////////////
+
+
+app.use(express.urlencoded());;
 app.use('/',require('./routes'));
 
 
