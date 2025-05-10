@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const { use } = require("../routes/user");
 module.exports.signUp = function(req,res){
     return res.render('signUp');
 }
@@ -16,11 +17,26 @@ try {
        return res.redirect("/users/signIn");
     }
     else{
-        return res.redirect("/users/signUp");
+        return res.redirect("/users/signIn");
     }
 } catch (error) {
     console.log ("***********",error);
 }
 
 }
-// module.exports.createSession = function (req, res) {};
+module.exports.createSession = async function (req, res) {
+    // let user = await User.findOne({email:req.body.email});
+    // console.log(user);
+    // if (user){
+    //     if (user.password != req.body.password) {
+    //       return res.redirect("/users/signIn");
+    //     } else {
+       
+    //       return res.render("home",{
+    //         mail : user.email,
+    //         name : user.name
+    //       });
+    //     }
+    // }
+    return res.redirect('/');
+};
