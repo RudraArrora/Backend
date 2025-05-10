@@ -3,11 +3,11 @@ const app =express();
 const port = 8000;
 // use express router
 const db = require("./config/moongose");
-//////////////////////////
+///////////////////////////////////////////////////
 const session = require('express-session');
 const passport = require("passport");
 const passportLocal = require("./config/passport");
-/////////////////////
+///////////////////////////////////////////////////
 
 
 app.use(express.urlencoded());;
@@ -30,6 +30,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use(passport.setAuthenticatedUser);
 app.use("/", require("./routes"));
 app.listen(port,function(err){
     if (err){
