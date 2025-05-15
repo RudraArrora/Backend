@@ -3,11 +3,12 @@
 
     </head>
     <body>
+         <h1>Codiel Profile Page </h1>
         <%if (locals.user){%>
-            <li><%=user.name%></li>
+            
             <a href="/users/signOut">Sign Out</a>
+            <%=user.name%>
         <%}%>
-        <h1>Codiel Profile Page </h1>
-
+       
     </body>
 </html>
