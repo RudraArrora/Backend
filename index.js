@@ -8,7 +8,7 @@ const session = require('express-session');
 const passport = require("passport");
 const passportLocal = require("./config/passport");
 ///////////////////////////////////////////////////
-
+const bodyParser = require("body-parser");
 
 app.use(express.urlencoded());;
 
@@ -31,6 +31,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(passport.setAuthenticatedUser);
+// console.log(passport.setAuthenticatedUser);
 app.use("/", require("./routes"));
 app.listen(port,function(err){
     if (err){
