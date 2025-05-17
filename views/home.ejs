@@ -1,11 +1,71 @@
 <html>
-    <head>
+  <head> </head>
+  <body>
+    <%if (locals.user){%> <%=user.name%>
+    <a href="/users/signOut">Sign Out</a>
 
-    </head>
-    <body>
-        <h1>Codiel And this new one </h1>
-        <%=mail%>
-        <br>
-        <%=name%>
-    </body>
+    <%}else{%>
+    <a href="/users/signIn">Sign In</a>
+    <br />
+
+    <a href="/users/signUp">Sign Up</a>
+    <%}%>
+
+    <h1>Codiel And this new one Home</h1>
+
+    <section id="postForm">
+      <%if (locals.user){%>
+      <form action="/posts/create" method="post">
+        <textarea name="content" rows="10" cols="40"></textarea>
+        <input type="submit" name="Post" />
+      </form>
+      <%}%>
+    </section>
+
+    <section id="displaying the post">
+      <ul>
+        <%for (post of posts){%>
+
+        <li>
+         <% if (locals.user && locals.user.id == post.user.id){%>
+          
+          <small>
+            <a href="/posts/destroy/<%=post.id%>">X</a>
+          </small>
+      <%}%>
+          <%=post.content%>
+          <br>
+           <%=post.user.name%>
+
+          <div id="commets">
+            <%if (locals.user){%>
+            <form action="/comments/create" method="post">
+              <input
+                type="text"
+                name="content"
+                placeholder="Write Your Views"
+              />
+              <input type="hidden" name="post" value="<%=post._id%>" />
+              <input type="submit" value="Add Comment" />
+            </form>
+
+            <%}%>
+            <div>
+                <ul>
+                    <%for (comment of post.comments){%>
+                        <p>
+                            <%=comment.content%>
+                        </p>
+                        <p>
+                             <%=comment.user.name%>
+                        </p>
+                    <%}%>
+                </ul>
+            </div>
+          </div>
+        </li>
+        <%}%>
+      </ul>
+    </section>
+  </body>
 </html>
