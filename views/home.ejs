@@ -1,6 +1,9 @@
 <html>
   <head> </head>
   <body>
+    <%if (flash.success && flash.success.length >0){%>
+      <h5><%=flash.success%></h5>
+    <%}%>
     <%if (locals.user){%> <%=user.name%>
     <a href="/users/signOut">Sign Out</a>
 
@@ -27,15 +30,14 @@
         <%for (post of posts){%>
 
         <li>
-         <% if (locals.user && locals.user.id == post.user.id){%>
-          
+          <% if (locals.user && locals.user.id == post.user.id){%>
+
           <small>
             <a href="/posts/destroy/<%=post.id%>">X</a>
           </small>
-      <%}%>
-          <%=post.content%>
-          <br>
-           <%=post.user.name%>
+          <%}%> <%=post.content%>
+          <br />
+          <%=post.user.name%>
 
           <div id="commets">
             <%if (locals.user){%>
@@ -51,16 +53,21 @@
 
             <%}%>
             <div>
-                <ul>
-                    <%for (comment of post.comments){%>
-                        <p>
-                            <%=comment.content%>
-                        </p>
-                        <p>
-                             <%=comment.user.name%>
-                        </p>
-                    <%}%>
-                </ul>
+              <ul>
+                <li>
+
+                  <%for (comment of post.comments){%>
+
+                                      <% if (locals.user && locals.user.id == comment.user.id){%>
+                  <small>
+                    <a href="/comments/destroy/<%=comment.id%>">X</a>
+                  </small>
+                  <%}%> 
+                  <p><%=comment.content%></p>
+                  <p><%=comment.user.name%></p>
+                  <%}%>
+                </li>
+              </ul>
             </div>
           </div>
         </li>
