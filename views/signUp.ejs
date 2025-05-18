@@ -1,6 +1,9 @@
 <html>
   <head></head>
   <body>
+        <%if (flash.success && flash.success.length >0){%>
+      <h5><%=flash.success%></h5>
+    <%}%>
     <h1>Sign Up </h1>
     <h1>Codiel And this new one </h1>
     <form action="/users/create" method="POST">
