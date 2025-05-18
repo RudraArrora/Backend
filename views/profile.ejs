@@ -3,6 +3,9 @@
 
     </head>
     <body>
+            <%if (flash.success && flash.success.length >0){%>
+      <h5><%=flash.success%></h5>
+    <%}%>
          <h1>Codiel Profile Page </h1>
         <%if (locals.user){%>
             
